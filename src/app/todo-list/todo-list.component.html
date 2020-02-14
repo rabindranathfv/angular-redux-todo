@@ -1,0 +1,32 @@
+<h6>Create Todo</h6>
+
+<form action="" (ngSubmit)="onSubmit()" #todoForm="ngForm">
+    <div clkass="form-row">
+        <div class="col-auto">
+            <input type="button" 
+            class="form-control" placeholder="description"
+            id="description" [(ngModel)]="model.description"
+            name="description" #description>
+        </div>
+        <div class="col-auto">
+            <input type="button" 
+            class="form-control" placeholder="responsable"
+            id="responsable" [(ngModel)]="model.responsable"
+            name="responsable" #responsable>
+        </div>
+        <div class="col-auto">
+            <select class="form-control"
+            id="priority"
+            [(ngModel)]="model.priority"
+            name="priority"
+            #priority="ngModel">
+            <option value="low">low</option>
+            <option value="medium">medium</option>
+            <option value="high">high</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-outline-primary" >create todo</button>
+        </div>
+    </div>
+</form>
