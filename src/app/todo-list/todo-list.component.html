@@ -34,7 +34,7 @@
     </form>
 </div>
 
-<div *ngIf="(todos | async)?.length > 0" class="container pd-top">
+<div *ngIf="todos?.length > 0 && todos" class="container pd-top">
     <h6> todo list</h6>
     <table class="table table-striped">
         <thead>

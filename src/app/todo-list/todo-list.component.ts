@@ -38,9 +38,9 @@ export class TodoListComponent implements OnInit {
    */
   public getModelTodo() {
     this.modelTodo = Object.keys(this.model);
+    this.modelTodo.push(`actions`);
     const index = this.modelTodo.indexOf('isCompleted');
     this.modelTodo[index] = `Completado`;
-    this.model[this.modelTodo.length + 1] = `actions`;
   }
   /**
    * onSubmit
