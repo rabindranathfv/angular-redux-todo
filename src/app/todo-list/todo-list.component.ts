@@ -4,6 +4,7 @@ import { NgRedux, select } from '@angular-redux/store';
 
 import { ADD_TODO , TOGGLE_TODO, REMOVE_TODO} from './../action';
 import { IAppState } from './../store';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -18,17 +19,29 @@ export class TodoListComponent implements OnInit {
 
   model: ITodo = {
     id: 0,
-    description: '',
-    responsable: '',
+    description: 'todo 1',
+    responsable: 'Rabindranath',
     priority: 'low',
     isCompleted: false,
   };
 
+  modelTodo = [];
+
   constructor( private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit(): void {
+    this.getModelTodo();
   }
 
+  /**
+   * getModelTodo
+   */
+  public getModelTodo() {
+    this.modelTodo = Object.keys(this.model);
+    const index = this.modelTodo.indexOf('isCompleted');
+    this.modelTodo[index] = `Completado`;
+    this.model[this.modelTodo.length + 1] = `actions`;
+  }
   /**
    * onSubmit
    */
@@ -55,6 +68,7 @@ export class TodoListComponent implements OnInit {
    * removeTodo
    */
   public removeTodo( todo: ITodo) {
+    console.log('remove this todo', todo);
     const action = {
       type: REMOVE_TODO,
       id: todo.id

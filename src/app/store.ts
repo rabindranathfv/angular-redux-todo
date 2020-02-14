@@ -14,8 +14,8 @@ export const INITIAL_STATE: IAppState = {
 export function rootReducer(state, action) {
     switch (action.type) {
         case ADD_TODO:
-            console.log('state into add todo', state);
             action.todo.id = state.todos.length + 1;
+            console.log('state into add todo', action);
             return {
                 todos: [...state.todos, action.todo],
                 lastUpdated: new Date()
@@ -35,6 +35,10 @@ export function rootReducer(state, action) {
             return obj;
             
         case REMOVE_TODO:
+            console.log(state);
+            console.log(action.id);
+            const newTodos = state.todos.filter(t => t.id !== action.id);
+            console.log(newTodos);
             return {
                 todos: state.todos.filter(t => t.id !== action.id),
                 lastUpdated: new Date()

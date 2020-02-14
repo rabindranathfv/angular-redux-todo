@@ -1,7 +1,5 @@
 <h6>Create Todo</h6>
 
-<pre> {{ model | json }}</pre>
-
 <div class="container">
     <form action="" (ngSubmit)="onSubmit()" #todoForm="ngForm">
         <div class="form-row">
@@ -34,4 +32,29 @@
             </div>
         </div>
     </form>
+</div>
+
+<div *ngIf="(todos | async)?.length > 0" class="container pd-top">
+    <h6> todo list</h6>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <ng-container *ngFor="let todoAttr of modelTodo">
+                    <th scope="col">{{ todoAttr}}</th>
+                </ng-container>  
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let todo of todos | async">
+                <tr>
+                    <th scope="row">{{ todo.id }}</th>
+                    <td>{{ todo.description }}</td>
+                    <td>{{ todo.responsable }}</td>
+                    <td>{{ todo.priority}}</td>
+                    <td>{{ todo.isCompleted }}</td>
+                    <td> <button type="button" class="btn btn-secondary" (click)="removeTodo(todo)">Del</button></td>
+                  </tr>
+            </ng-container>
+        </tbody>
+      </table>
 </div>
