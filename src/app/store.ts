@@ -15,10 +15,9 @@ export function rootReducer(state, action) {
     switch (action.type) {
         case ADD_TODO:
             action.todo.id = state.todo.length + 1;
-            return {
-                ...state,
-                todos: state.todos
-            }
+            return Object.assign({}, state, {
+                todos: state.todos.concat(Object.assign({}, action.todo))
+            });
         case TOGGLE_TODO:
             break;
         case REMOVE_TODO:
