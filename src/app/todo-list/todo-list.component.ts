@@ -22,7 +22,7 @@ export class TodoListComponent implements OnInit {
     responsable: '',
     priority: 'low',
     isCompleted: false,
-  }
+  };
 
   constructor( private ngRedux: NgRedux<IAppState>) { }
 
@@ -33,17 +33,11 @@ export class TodoListComponent implements OnInit {
    * onSubmit
    */
   public onSubmit() {
+    console.log(this.model);
     const action = {
       type: ADD_TODO, todo: this.model
     };
     this.ngRedux.dispatch(action);
-  }
-
-  /**
-   * addTodo
-   */
-  public addTodo() {
-    
   }
 
   /**

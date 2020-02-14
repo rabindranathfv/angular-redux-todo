@@ -22,7 +22,7 @@ export class TodoOverviewComponent implements OnInit {
   /**
    * cleanTodos
    */
-  public cleanTodos() {
+  public clearTodos() {
     const action = { type: REMOVE_ALL_TODOS};
     this.ngRedux.dispatch(action);
   }
