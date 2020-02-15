@@ -57,9 +57,10 @@ export class TodoListComponent implements OnInit {
    * toggleTodo
    */
   public toggleTodo( todo: ITodo) {
+    console.log(todo);
     const action = {
       type: TOGGLE_TODO,
-      id: this.todos.id
+      id: todo.id
     };
     this.ngRedux.dispatch(action);
   }

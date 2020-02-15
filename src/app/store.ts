@@ -16,33 +16,23 @@ export function rootReducer(state, action) {
         case ADD_TODO:
             console.log(state);
             action.todo.id = state.todos.length + 1;
-            console.log('state into add todo', action);
             return Object.assign({}, state, {
                 todos: state.todos.concat(Object.assign({}, action.todo)),
-                lastUpdate: new Date()
-            });
-            return {
-                todos: [...state.todos, action.todo],
                 lastUpdated: new Date()
-            };
+            });
         case TOGGLE_TODO:
             let todo = state.todos.find(t => t.id === action.id);
             let index = state.todos.indexOf(todo);
-            todo.isCompleted = !todo.isCompleted;
-            console.log('TODO INTO TOGGLE TODO', todo);
-            let obj = Object.assign({}, state, {
+            return Object.assign({}, state, {
                 todos: [
-                    ...state.todos,
-                    todo
+                    ...state.todos.slice(0, index),
+                    Object.assign({}, todo, {isCompleted: !todo.isCompleted}),
+                    ...state.todos.slice(index + 1)
                 ],
                 lastUpdated: new Date()
             });
-            return obj;
-            
         case REMOVE_TODO:
-            console.log(action.id);
             const newTodos = state.todos.filter(t => t.id !== action.id);
-            console.log(newTodos);
             return {
                 todos: state.todos.filter(t => t.id !== action.id),
                 lastUpdated: new Date()

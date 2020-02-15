@@ -34,8 +34,9 @@
     </form>
 </div>
 
-<div *ngIf="todos?.length > 0 && todos" class="container pd-top">
+<div class="container pd-top">
     <h6> todo list</h6>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -47,11 +48,15 @@
         <tbody>
             <ng-container *ngFor="let todo of todos | async">
                 <tr>
-                    <th scope="row">{{ todo.id }}</th>
-                    <td>{{ todo.description }}</td>
-                    <td>{{ todo.responsable }}</td>
-                    <td>{{ todo.priority}}</td>
-                    <td>{{ todo.isCompleted }}</td>
+                    <th scope="row"><span (click)="toggleTodo(todo)" [class.completed]="todo.isCompleted">{{ todo.id }}</span></th>
+                    <td><span (click)="toggleTodo(todo)" [class.completed]="todo.isCompleted">{{ todo.description }}</span></td>
+                    <td><span (click)="toggleTodo(todo)" [class.completed]="todo.isCompleted">{{ todo.responsable }}</span></td>
+                    <td>
+                        <span *ngIf="todo.priority == 'low'" class="badge badge-success">Low</span>
+                        <span *ngIf="todo.priority == 'medium'" class="badge badge-warning">Medium</span>
+                        <span *ngIf="todo.priority == 'high'" class="badge badge-danger">High</span>
+                    </td>
+                    <td><span (click)="toggleTodo(todo)" [class.completed]="todo.isCompleted">{{ todo.isCompleted }}</span></td>
                     <td> <button type="button" class="btn btn-secondary" (click)="removeTodo(todo)">Del</button></td>
                   </tr>
             </ng-container>
